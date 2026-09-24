@@ -1,0 +1,312 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign in | Presynce Attendance Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" />
+    <link rel="icon" href="../assets/logo128.png" />
+    <link rel="stylesheet" href="../dist/output.css" />
+    <script src="../src/shared/trapezoid-engine.js"></script>
+  </head>
+  <body class="font-normal scroll-board overflow-x-auto">
+    <nav class="sticky top-0 flex items-center w-full h-10 bg-[#cccccc] z-1">
+      <div class="relative custom-trapezoid flex-3" data-color="white" data-slant="83">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="../index.html" class="absolute inset-0 flex items-center text-xl font-normal text-black cursor-pointer justify-left left-5">
+          <img src="../assets/Full Logo.png" alt="Logo of Presynce" class="h-full max-h-[70%] w-auto object-contain" />
+          Attendance Tracker
+        </a>
+      </div>
+
+      <div class="relative flex-1 custom-trapezoid" data-color="#dc4437">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="contactUs.html" class="absolute inset-0 flex items-center justify-center font-bold text-white cursor-pointer text-m"> Contact Us </a>
+      </div>
+
+      <div class="relative flex-1 custom-trapezoid" data-color="#4286F5">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="howToTutorials.html" class="absolute inset-0 flex items-center justify-center font-bold text-brand-chalk cursor-pointer text-m">Guide & Notes</a>
+      </div>
+
+      <div class="relative flex-1 custom-trapezoid" data-color="#FFEEBD">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="classesPage.html" class="absolute inset-0 flex items-center justify-center font-bold cursor-pointer text-brand-board text-m">My Groups</a>
+      </div>
+
+      <div class="relative flex-1 custom-trapezoid z-99" data-color="#002915">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="saveAttendance.html" class="absolute inset-0 flex items-center justify-center font-bold cursor-pointer text-brand-chalk text-m">My Records</a>
+      </div>
+
+      <div class="nav-active relative flex-1 cursor-pointer custom-trapezoid" data-color="#c9a0dc">
+        <div class="w-full h-full shape-holder"></div>
+        <a id="navAuthLink" href="signin.html" class="absolute inset-0 flex items-center justify-center font-bold text-black cursor-pointer text-m">Sign in</a>
+      </div>
+    </nav>
+
+    <div class="page-workspace">
+      <main class="w-full min-h-[calc(100vh-40px)] p-6 mx-auto bg-[#c9a0dc]">
+        <div class="bg-board w-full h-[85vh] mt-2 flex flex-col items-center justify-center">
+          <!-- DEFAULT STATE -->
+          <div id="signed-out-state" class="hidden flex-col items-center justify-center">
+            <span class="material-symbols-outlined text-7xl text-white">backup</span>
+            <h1 class="font-heading text-3xl text-white m-5">Backup and Restore</h1>
+            <p class="text-white text-center mb-3">Securely save your attendance records and groups to the cloud.<br />Sign in with your Google account to sync and restore your data anytime.</p>
+            <button id="google-signin-button" type="button" class="w-fit px-5 py-2 m-5 border flex gap-2 bg-white border-slate-200 rounded-lg text-slate-700 font-semibold hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed">
+              <img class="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo" />
+              <span>Sign in with Google</span>
+            </button>
+            <div class="text-white text-center m-3">
+              <p class="text-sm">
+                By continuing, you agree to our
+                <a href="termsOfService.html" class="text-amber-200 hover:text-amber-300 hover:underline transition">Terms of Service</a>
+                and acknowledge our
+                <a href="privacyPolicy.html" class="text-amber-200 hover:text-amber-300 hover:underline transition">Privacy Policy</a>.
+              </p>
+            </div>
+          </div>
+
+          <!-- SIGNED IN STATE -->
+          <div id="signed-in-state" class="hidden gap-3 items-center justify-between">
+            <!-- ACCOUNT DETAILS -->
+            <div class="w-100 h-120 max-w-3xl flex flex-col items-center justify-center">
+              <img id="google-profile-photo" src="../assets/profile-placeholder.jpg" alt="Google profile photo" class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md" />
+
+              <h1 id="google-name" class="font-heading text-3xl text-white mt-4 text-center break-all">Presynce User</h1>
+
+              <p class="text-white/80 text-sm mt-1">
+                First signed in:
+                <span id="first-signed-in">4-Sep-2026</span>
+              </p>
+
+              <p id="google-email" class="text-white text-base mt-2"></p>
+
+              <div class="flex flex-col justify-center gap-3 mt-5">
+                <!-- <button id="donate-button" class="px-5 py-2 border border-white text-white font-medium rounded-lg hover:bg-brand-chalk hover:text-brand-board transition cursor-pointer">Donate Us</button> -->
+
+                <button id="sign-out-button" class="px-5 py-2 bg-brand-redline/80 text-white font-medium rounded-lg hover:bg-brand-redline hover:text-white transition cursor-pointer disabled:opacity-60">Sign Out</button>
+              </div>
+            </div>
+
+            <!-- VERTICAL WAVY DIVIDER -->
+            <div class="h-100 border-l-2 border-dashed border-white/30 my-8"></div>
+
+            <!-- BACKUP / RESTORE SECTION -->
+            <div class="w-120 h-120 max-w-2xl flex flex-col items-center justify-center">
+              <h2 class="font-heading text-2xl text-white text-center">Backup and Restore your data</h2>
+
+              <!-- <p class="text-white/80 text-center mt-2 mb-6">Securely backup or restore your Records and Groups.</p> -->
+              <!-- LAST BACKUP -->
+              <div class="text-center text-white text-sm m-5">
+                Last Backup:
+                <span id="last-backup-date"> 4-Sep-2026 at 11:08:08 PM </span>
+              </div>
+
+              <!-- BACKUP CARD -->
+              <button id="backup-button" class="shrink-0 flex items-center justify-center gap-2 mt-5 px-4 py-2.5 bg-brand-board text-white rounded-lg font-medium hover:bg-green-700 hover:opacity-90 transition cursor-pointer">
+                <span class="material-symbols-outlined text-2xl leading-none">backup</span>
+                Backup Data
+              </button>
+
+              <!-- RESTORE CARD -->
+              <button id="restore-button" class="shrink-0 flex items-center justify-center gap-2 mt-5 px-4 py-2.5 bg-brand-board text-white rounded-lg font-medium hover:bg-green-700 hover:opacity-90 transition cursor-pointer">
+                <span class="material-symbols-outlined text-2xl leading-none">cloud_download</span>
+                Restore Data
+              </button>
+
+              <!-- LEGAL LINKS & COPYRIGHT -->
+              <div class="flex flex-col items-center text-center mt-10">
+                <div class="flex items-center gap-2 text-sm text-white/80">
+                  <a href="termsOfService.html" class="hover:text-white hover:underline transition text-brand-chalk">Terms of Service</a>
+                  <span>•</span>
+                  <a href="privacyPolicy.html" class="hover:text-white hover:underline text-brand-chalk transition">Privacy Policy</a>
+                </div>
+
+                <p class="text-xs text-white/60 mt-2">
+                  &copy; 2026 Presynce Attendance Tracker.<br />
+                  All rights reserved.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ========================= -->
+          <!-- BACKUP MODAL -->
+          <!-- ========================= -->
+
+          <div id="backup-modal" class="hidden fixed inset-0 z-99 items-center justify-center bg-black/50 p-4">
+            <div class="w-full max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-xl p-6">
+              <!-- MODAL HEADER -->
+              <div class="flex items-center justify-between mb-5">
+                <h2 class="text-xl font-bold text-slate-700">Backup Records and Groups</h2>
+
+                <button id="close-backup-modal" type="button" class="text-2xl text-slate-400 hover:text-slate-700">×</button>
+              </div>
+
+              <!-- GOOGLE ACCOUNT DATA -->
+              <div class="space-y-4 text-slate-700">
+                <div>
+                  <p class="font-semibold">In <span id="backup-google-email"></span> you have</p>
+
+                  <p class="text-sm mt-1">
+                    <span id="cloud-record-count">0</span>
+                    Records
+                  </p>
+
+                  <p class="text-sm">
+                    <span id="cloud-group-count">0</span>
+                    Groups
+                  </p>
+                </div>
+
+                <!-- DEVICE DATA -->
+                <div>
+                  <p class="font-semibold">In this device browser you have</p>
+
+                  <p class="text-sm mt-1">
+                    <span id="device-record-count">0</span>
+                    Records
+                  </p>
+
+                  <p class="text-sm">
+                    <span id="device-group-count">0</span>
+                    Groups
+                  </p>
+                </div>
+
+                <!-- WARNING -->
+                <div class="bg-[#FFF4D6] border border-[#E7C96A] rounded-lg p-4 text-sm text-slate-700">
+                  <p>
+                    ★ <strong>Note:</strong>
+                    After backup, the
+                    <strong>
+                      <span id="backup-warning-cloud-records">0</span>
+                      Records
+                    </strong>
+                    and
+                    <strong>
+                      <span id="backup-warning-cloud-groups">0</span>
+                      Groups
+                    </strong>
+                    present in
+                    <strong id="backup-warning-email"></strong>
+                    will be deleted and replaced with the
+                    <strong>
+                      <span id="backup-warning-device-records">0</span>
+                      Records
+                    </strong>
+                    and
+                    <strong>
+                      <span id="backup-warning-device-groups">0</span>
+                      Groups
+                    </strong>
+                    currently present in this device browser.
+                  </p>
+
+                  <p class="mt-3">Please contact support if you need clarification or need to merge both the data before making a backup.</p>
+                </div>
+              </div>
+
+              <!-- BACKUP ACTIONS -->
+              <div class="flex justify-end gap-3 mt-6">
+                <button id="cancel-backup" type="button" class="px-4 py-2 rounded-lg border border-slate-300 text-slate-600 font-semibold hover:bg-slate-100">Cancel</button>
+
+                <button id="confirm-backup" type="button" class="px-4 py-2 rounded-lg bg-brand-board text-white font-bold hover:opacity-90">Backup Now</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ========================= -->
+          <!-- RESTORE MODAL -->
+          <!-- ========================= -->
+
+          <div id="restore-modal" class="hidden fixed inset-0 z-99 items-center justify-center bg-black/50 p-4">
+            <div class="w-full max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-xl p-6">
+              <!-- MODAL HEADER -->
+              <div class="flex items-center justify-between mb-5">
+                <h2 class="text-xl font-bold text-slate-700">Restore Records and Groups</h2>
+
+                <button id="close-restore-modal" type="button" class="text-2xl text-slate-400 hover:text-slate-700">×</button>
+              </div>
+
+              <!-- EMPTY STATE (shown for new users / accounts with no cloud backup yet) -->
+              <div id="restore-empty-state" class="hidden text-center py-6">
+                <span class="material-symbols-outlined text-5xl text-slate-300">cloud_off</span>
+                <h3 class="text-sm font-bold text-slate-700 mt-3">Nothing to restore yet</h3>
+                <p class="text-xs text-slate-500 mt-1.5 max-w-xs mx-auto">This Google Account doesn't have a cloud backup yet. Use the <strong>Backup</strong> card first (on this device or another one), then come back here to restore it.</p>
+              </div>
+
+              <!-- RESTORE INFORMATION (shown only when a cloud backup exists) -->
+              <div id="restore-data-state" class="space-y-4 text-slate-700">
+                <div>
+                  <p class="font-semibold">In your last backup on</p>
+
+                  <p id="restore-backup-date" class="text-sm mt-1">--</p>
+                </div>
+
+                <!-- BACKUP COUNTS -->
+                <div>
+                  <p class="text-sm">
+                    <span id="restore-record-count">0</span>
+                    Records
+                  </p>
+
+                  <p class="text-sm">
+                    <span id="restore-group-count">0</span>
+                    Groups
+                  </p>
+                </div>
+
+                <!-- WARNING -->
+                <div class="bg-red-50 border border-red-200 rounded-lg p-4 text-sm text-red-700">
+                  <strong class="block"> This process cannot be undone. </strong>
+
+                  <p class="mt-1">Once you are sure you want to perform the restore, click the <strong>Proceed</strong> button to restore these data in this device browser.</p>
+                </div>
+
+                <!-- MERGE OPTION -->
+                <label class="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 cursor-pointer">
+                  <input id="merge-on-restore" type="checkbox" class="mt-1 w-4 h-4 accent-brand-board" />
+
+                  <span class="text-sm">
+                    Merge
+                    <strong><span id="merge-record-count">0</span> Record(s) </strong>
+                    and
+                    <strong> <span id="merge-group-count">0</span>Group(s) </strong>
+                    with existing Records and Groups while restoring.
+                  </span>
+                </label>
+              </div>
+
+              <!-- RESTORE ACTIONS -->
+              <div class="flex justify-end gap-3 mt-6">
+                <button id="cancel-restore" type="button" class="px-4 py-2 rounded-lg border border-slate-300 text-slate-600 font-semibold hover:bg-slate-100">Cancel</button>
+
+                <button id="confirm-restore" type="button" class="px-4 py-2 rounded-lg bg-brand-board text-white font-bold hover:opacity-90">Proceed</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="confirmModalContainer"></div>
+      </main>
+    </div>
+
+    <!-- FIREBASE SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+    <!-- SCRIPTS -->
+    <script src="../src/shared/page.js"></script>
+    <script src="../src/shared/reusableModal.js"></script>
+    <script src="../src/shared/firebaseConfig.js"></script>
+    <script src="../src/shared/authManager.js"></script>
+    <script src="../src/shared/backupManager.js"></script>
+    <script src="../src/shared/navAuth.js"></script>
+    <script src="../src/features/signinPage.js"></script>
+  </body>
+</html>

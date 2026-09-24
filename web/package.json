@@ -1,0 +1,19 @@
+{
+  "name": "presynce-web",
+  "version": "1.0.0",
+  "description": "Automatically sync presynce in every meetings with Presynce",
+  "scripts": {
+    "dev": "tailwindcss -i ./src/css/input.css -o ./dist/output.css --watch",
+    "build": "tailwindcss -i ./src/css/input.css -o ./dist/output.css --minify"
+  },
+  "keywords": [],
+  "author": "Caitlin Gail Abizar",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "tailwindcss": "^4.3.3"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.3"
+  },
+  "main": "index.js"
+}

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guide & FAQs | Presynce Attendance Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" />
+    <link rel="icon" href="../assets/logo128.png" />
+    <link rel="stylesheet" href="../dist/output.css" />
+    <script src="../src/shared/trapezoid-engine.js"></script>
+  </head>
+  <body class="font-normal scroll-blue">
+    <nav class="sticky top-0 flex items-center w-full h-10 bg-[#cccccc] z-1000">
+      <div class="relative custom-trapezoid flex-3" data-color="white" data-slant="83">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="../index.html" class="absolute inset-0 flex items-center text-xl font-normal text-black cursor-pointer justify-left left-5">
+          <img src="../assets/Full Logo.png" alt="Logo of Presynce" class="h-full max-h-[70%] w-auto object-contain" />
+          Attendance Tracker
+        </a>
+      </div>
+
+      <div class="relative flex-1 custom-trapezoid" data-color="#dc4437">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="contactUs.html" class="absolute inset-0 flex items-center justify-center font-bold text-white cursor-pointer text-m">Contact Us</a>
+      </div>
+
+      <div class="nav-active relative flex-1 custom-trapezoid" data-color="#4286F5">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="howToTutorials.html" class="absolute inset-0 flex items-center justify-center font-bold cursor-pointer text-brand-chalk text-m">Guide & Notes</a>
+      </div>
+
+      <div class="relative flex-1 custom-trapezoid" data-color="#FFEEBD">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="classesPage.html" class="absolute inset-0 flex items-center justify-center font-bold cursor-pointer text-brand-board text-m">My Groups</a>
+      </div>
+
+      <div class="relative flex-1 custom-trapezoid z-99" data-color="#002915">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="saveAttendance.html" class="absolute inset-0 flex items-center justify-center font-bold cursor-pointer text-brand-chalk text-m">My Records</a>
+      </div>
+
+      <div class="relative flex-1 cursor-pointer custom-trapezoid" data-color="#c9a0dc">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="signin.html" class="absolute inset-0 flex items-center justify-center font-bold text-black cursor-pointer text-m">Sign in</a>
+      </div>
+    </nav>
+
+    <div class="page-workspace">
+      <main class="w-full min-h-[calc(100vh-40px)] bg-brand-blueline">
+        <!-- =====================================================
+             LIBRARY VIEW — Visual Tutorial Library
+             ===================================================== -->
+        <div id="libraryView">
+          <!-- HERO / SEARCH -->
+          <div class="px-6 py-10 border-b border-white/15">
+            <div class="max-w-6xl mx-auto">
+              <p class="text-xs font-bold uppercase tracking-widest text-amber-300 mb-2">Guide &amp; FAQs</p>
+              <h1 class="text-3xl font-heading text-white mb-1">Learn Presynce, feature by feature</h1>
+              <p class="text-blue-50 text-sm mb-6">Browse every tutorial below, or search for something specific.</p>
+              <div class="flex flex-col sm:flex-row gap-3">
+                <div class="relative flex-1">
+                  <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                  <input id="tutorialSearchInput" type="text" placeholder='Search tutorials, e.g. "export CSV"' class="w-full bg-white text-slate-800 rounded-2xl py-3 pl-12 pr-4 text-sm shadow-lg focus:outline-none focus:ring-2 focus:ring-amber-300" />
+                </div>
+                <select id="categoryFilterSelect" class="bg-white text-slate-700 rounded-2xl px-4 py-3 text-sm shadow-lg focus:outline-none focus:ring-2 focus:ring-amber-300">
+                  <option value="all">All Categories</option>
+                </select>
+                <select id="sortSelect" class="bg-white text-slate-700 rounded-2xl px-4 py-3 text-sm shadow-lg focus:outline-none focus:ring-2 focus:ring-amber-300">
+                  <option value="default">Sort: Default</option>
+                  <option value="steps-asc">Sort: Fewest Steps</option>
+                  <option value="alpha">Sort: A–Z</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="max-w-6xl mx-auto px-6 py-10">
+            <!-- Deep-link banner (shown only when arriving with ?feature=) -->
+            <div id="deepLinkBanner" class="hidden items-center gap-2 text-xs font-bold text-blue-950 bg-white border border-amber-300 rounded-xl px-4 py-2.5 mb-6 w-fit shadow-md">
+              <span class="material-symbols-outlined text-base text-amber-500">arrow_circle_down</span>
+              <span id="deepLinkBannerText"></span>
+            </div>
+
+            <!-- Empty state for no search/filter matches -->
+            <div id="noResultsState" class="hidden flex-col items-center justify-center text-center py-16 px-6 text-slate-400 bg-white rounded-3xl shadow-xl max-w-md mx-auto">
+              <span class="material-symbols-outlined text-5xl mb-3 text-slate-300">search_off</span>
+              <p class="font-bold text-blue-950">No tutorials match your search.</p>
+              <p class="text-sm">Try a different keyword or clear the category filter.</p>
+            </div>
+
+            <!-- Populated by tutorialLibrary.js -->
+            <div id="shelvesContainer" class="space-y-12"></div>
+          </div>
+        </div>
+
+        <!-- =====================================================
+             DETAIL VIEW — Single Tutorial / Background
+             ===================================================== -->
+        <div id="detailView" class="hidden max-w-3xl mx-auto px-6 py-10">
+          <div class="flex items-center gap-1.5 text-xs text-blue-100 font-semibold mb-4">
+            <button id="backToLibraryBreadcrumb" class="hover:text-amber-300 cursor-pointer">Guide &amp; FAQs</button>
+            <span class="material-symbols-outlined text-sm">chevron_right</span>
+            <span id="detailBreadcrumbCategory"></span>
+            <span class="material-symbols-outlined text-sm">chevron_right</span>
+            <span id="detailBreadcrumbTitle" class="text-white font-bold">Tutorial</span>
+          </div>
+
+          <div id="detailDeepLinkBanner" class="hidden items-center gap-2 text-xs font-bold text-blue-950 bg-white border border-amber-300 rounded-xl px-4 py-2.5 mb-5 w-fit shadow-md">
+            <span class="material-symbols-outlined text-base text-amber-500">link</span>
+            You were sent here directly from another page in Presynce.
+          </div>
+
+          <div class="bg-white rounded-3xl shadow-xl p-6 sm:p-8">
+            <div class="flex items-center gap-3 mb-2">
+              <div id="detailIconBox" class="w-11 h-11 rounded-xl flex items-center justify-center shrink-0">
+                <span id="detailIcon" class="material-symbols-outlined"></span>
+              </div>
+              <h1 id="detailTitle" class="text-2xl font-bold text-blue-950"></h1>
+            </div>
+            <p id="detailMeta" class="text-slate-500 text-sm mb-8"></p>
+
+            <div id="detailOverviewBlock">
+              <h2 class="text-sm font-bold uppercase tracking-wider text-slate-400 mb-2">Feature Overview</h2>
+              <p id="detailOverview" class="text-slate-700 leading-relaxed mb-8"></p>
+            </div>
+
+            <div id="detailStepsBlock">
+              <h2 class="text-sm font-bold uppercase tracking-wider text-slate-400 mb-4">How to Use</h2>
+              <ol id="detailStepsList" class="space-y-6"></ol>
+              <div id="detailNote" class="hidden mt-6 items-center gap-3 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-sm text-amber-900"></div>
+            </div>
+
+            <!-- Background & System Concepts renders here instead of steps -->
+            <div id="backgroundSections" class="hidden space-y-8"></div>
+
+            <div id="relatedTutorialsBlock" class="border-t border-slate-200 pt-6 mt-10 mb-2 hidden">
+              <h2 class="text-sm font-bold uppercase tracking-wider text-slate-400 mb-3">Related Tutorials</h2>
+              <div id="relatedTutorialsGrid" class="grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between mt-8">
+            <button id="prevTutorialBtn" class="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-100 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"><span class="material-symbols-outlined text-base">arrow_back</span> <span id="prevTutorialLabel"></span></button>
+            <button id="backToLibraryBtn" class="inline-flex items-center gap-1.5 text-sm font-bold text-blue-950 bg-white hover:bg-amber-300 rounded-full px-5 py-2.5 shadow-md transition-colors"><span class="material-symbols-outlined text-base">apps</span> Back to All Features</button>
+            <button id="nextTutorialBtn" class="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-100 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"><span id="nextTutorialLabel"></span> <span class="material-symbols-outlined text-base">arrow_forward</span></button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- IMAGE LIGHTBOX -->
+    <div id="imageLightbox" class="hidden fixed left-0 right-0 h-[calc(100vh-40px)] top-10 bottom-0 z-100 bg-slate-950/50 items-center justify-center p-4">
+      <!-- Close -->
+      <button id="imageLightboxClose" type="button" class="absolute top-4 right-4 z-1001 flex items-center gap-1.5 bg-white text-slate-800 hover:bg-amber-300 rounded-full px-4 py-2 text-sm font-bold shadow-xl transition-all" aria-label="Close image">
+        <span class="material-symbols-outlined text-lg">close</span>
+        <span>Close</span>
+      </button>
+
+      <!-- Image -->
+      <img id="imageLightboxImage" src="" alt="" class="max-w-[95%] max-h-[95%] object-contain rounded-xl shadow-2xl cursor-zoom-out" />
+    </div>
+
+    <script src="../src/features/tutorialLibrary.js"></script>
+    <script src="../src/shared/navAuth.js"></script>
+    <script src="../src/shared/page.js"></script>
+  </body>
+</html>

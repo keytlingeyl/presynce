@@ -1,0 +1,15 @@
+<!-- REUSABLE CONFIRMATION / WARNING / INPUT MODAL -->
+<div id="confirmModal" class="hidden fixed inset-0 z-50 items-center justify-center bg-slate-900/40 backdrop-blur-sm transition-opacity">
+  <div class="bg-white rounded-2xl shadow-xl border border-slate-200 w-full max-w-md p-6 relative mx-4">
+    <!-- Close button -->
+    <button id="confirmModalClose" type="button" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl leading-none">&times;</button>
+    <!-- Title -->
+    <h3 id="confirmModalTitle" class="text-base font-bold text-slate-900 mb-2">Confirm Action</h3>
+    <!-- Message -->
+    <p id="confirmModalMessage" class="text-sm text-slate-600 leading-relaxed mb-4 w-full">Are you sure you want to continue?</p>
+    <!-- Optional Input -->
+    <div id="confirmModalInputContainer" class="hidden mb-6"><input id="confirmModalInput" type="text" class="w-full px-3 py-2.5 text-sm text-slate-900 bg-white border border-slate-300 rounded-xl outline-none focus:ring-2 focus:ring-brand-blueline/20 focus:border-brand-blueline transition-all" autocomplete="off" /></div>
+    <!-- Buttons -->
+    <div class="flex justify-end gap-2"><button id="confirmModalCancel" type="button" class="px-4 py-2 text-sm font-semibold text-slate-700 bg-slate-200 hover:bg-slate-300 border border-slate-300 rounded-xl transition-all">Cancel</button> <button id="confirmModalOk" type="button" class="px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl transition-all">OK</button></div>
+  </div>
+</div>

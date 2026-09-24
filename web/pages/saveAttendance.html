@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Records | Presynce Attendance Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+    <link rel="icon" type="image/png" href="../assets/logo128.png" />
+    <link rel="stylesheet" href="../dist/output.css" />
+    <script src="../src/shared/trapezoid-engine.js"></script>
+  </head>
+  <body class="font-normal scroll-board overflow-x-auto">
+    <nav class="sticky top-0 flex items-center w-full h-10 bg-[#cccccc] z-1">
+      <div class="relative custom-trapezoid flex-3" data-color="white" data-slant="83">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="../index.html" class="absolute inset-0 flex items-center text-xl font-normal text-black cursor-pointer justify-left left-5">
+          <img src="../assets/Full Logo.png" alt="Logo of Presynce" class="h-full max-h-[70%] w-auto object-contain" />
+          Attendance Tracker
+        </a>
+      </div>
+
+      <div class="relative flex-1 custom-trapezoid" data-color="#dc4437">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="contactUs.html" class="absolute inset-0 flex items-center justify-center font-bold text-white cursor-pointer text-m"> Contact Us </a>
+      </div>
+
+      <div class="relative flex-1 custom-trapezoid" data-color="#4286F5">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="howToTutorials.html" class="absolute inset-0 flex items-center justify-center font-bold text-brand-chalk cursor-pointer text-m">Guide & Notes</a>
+      </div>
+
+      <div class="relative flex-1 custom-trapezoid" data-color="#FFEEBD">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="classesPage.html" class="absolute inset-0 flex items-center justify-center font-bold cursor-pointer text-brand-board text-m">My Groups</a>
+      </div>
+
+      <div class="nav-active relative flex-1 custom-trapezoid z-99" data-color="#002915">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="saveAttendance.html" class="absolute inset-0 flex items-center justify-center font-bold cursor-pointer text-brand-chalk text-m">My Records</a>
+      </div>
+
+      <div class="relative flex-1 cursor-pointer custom-trapezoid" data-color="#c9a0dc">
+        <div class="w-full h-full shape-holder"></div>
+        <a id="navAuthLink" href="signin.html" class="absolute inset-0 flex items-center justify-center font-bold text-black cursor-pointer text-m">Sign in</a>
+      </div>
+    </nav>
+
+    <!-- FORDA DASHBOARD LIST NA THIS -->
+    <div class="page-workspace">
+      <main class="w-full min-h-[calc(100vh-40px)] p-6 mx-auto bg-brand-board">
+        <h1 class="justify-center text-3xl text-center font-heading text-brand-chalk mt-3">My Records</h1>
+        <p class="p-2 mb-5 text-center text-white">Review, manage and inspect attendance records tracked from the presynce extension</p>
+
+        <!-- EXTENSION RESULT STATUS BANNER -->
+        <div id="statusBanner" class="items-center flex-none hidden gap-3 p-3 mb-4 border rounded-sm">
+          <span id="statusIcon" class="material-symbols-outlined text-2xl font-semibold leading-none items-center justify-center"></span>
+          <div id="statusText" class="text-lg font-semibold"></div>
+        </div>
+
+        <!-- RECORD LIST TABLE -->
+        <div class="w-full text-sm bg-white rounded-2xl shadow-sm border-slate-200">
+          <!-- CONTROL PANEL -->
+          <div id="pageControlHeader" class="flex flex-row flex-wrap bg-white items-center justify-between gap-3 px-3 py-3 rounded-t-2xl border-b-slate-200 sticky top-10.5 z-10">
+            <!-- SEARCH FIELD -->
+            <div class="relative flex-1 min-w-55 max-w-xs">
+              <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-2xl text-slate-400 pointer-events-none">search</span>
+              <input type="text" id="recordSearchInput" oninput="handleRecordSearch()" placeholder="Search by name, code or tag..." class="w-full text-xs font-semibold bg-slate-50 border border-slate-200 rounded-2xl py-2 pl-10 pr-3 focus:outline-none focus:border-indigo-400 focus:bg-white transition-all" />
+            </div>
+
+            <!-- IDEA: FOR FUTURE UPDATE -->
+            <!-- RECOVER PAST MEETING BUTTON -->
+            <!-- <button id="btnRecoverPastMeeting" onclick="recoverPastMeeting()" class="inline-flex items-center gap-2 px-3 py-1 rounded-2xl bg-amber-100 hover:bg-amber-200 text-amber-800 font-bold shadow-sm transition-all whitespace-nowrap cursor-pointer">
+              <span class="material-symbols-outlined text-2xl">restore</span>
+              Recover Past Meeting
+            </button> -->
+
+            <!-- AUTO BACKUP TOGGLE -->
+            <button id="btnAutoBackupToggle" type="button" onclick="toggleAutoBackup()" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-slate-50 hover:bg-slate-100 shadow-sm transition-all cursor-pointer whitespace-nowrap">
+              <span id="autoBackupTrack" class="relative inline-block w-10 h-5 rounded-full bg-slate-300 transition-colors shrink-0">
+                <span id="autoBackupKnob" class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform translate-x-0"></span>
+              </span>
+              <span id="autoBackupLabel" class="text-xs font-bold text-slate-700">Auto Backup (disabled)</span>
+            </button>
+
+            <!-- BACKUP WARING LABEL -->
+            <div id="backupCautionBanner" class="text-xs font-bold text-brand-redline pl-3 whitespace-nowrap items-center justify-center flex gap-2">
+              <span id="backupCautionIcon" class="material-symbols-outlined text-xl leading-none">cloud_off</span>
+              <span id="backupCautionText">Auto Backup is currently disabled.</span>
+            </div>
+
+            <!-- PAGINATION -->
+            <div class="inline-flex items-center gap-2 text-xs whitespace-nowrap ml-auto">
+              <button id="btnPrevPage" onclick="changePage(-1)" class="inline-flex items-center px-3 py-1 rounded-2xl bg-slate-50 hover:bg-amber-200 disabled:opacity-40 disabled:hover:bg-slate-50 shadow-sm transition-all">
+                <span class="material-symbols-outlined text-2xl">chevron_left</span>
+              </button>
+
+              <span id="pageInfoStart" class="font-bold">0</span>-<span id="pageInfoEnd" class="font-bold">0</span> of <span id="pageInfoTotal" class="font-bold">0</span>
+
+              <button id="btnNextPage" onclick="changePage(1)" class="inline-flex items-center px-3 py-1 rounded-2xl bg-slate-50 hover:bg-amber-200 disabled:opacity-40 disabled:hover:bg-slate-50 shadow-sm transition-all">
+                <span class="material-symbols-outlined text-2xl">chevron_right</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Table Grid -->
+          <div class="w-full">
+            <table class="w-full text-center border-collapse bg-white rounded-2xl">
+              <thead class="sticky top-22 z-10">
+                <tr class="bg-white border-b border-slate-200 uppercase font-bold [&>th:first-child]:rounded-tl-2xl [&>th:last-child]:rounded-tr-2xl">
+                  <th class="px-4 py-3 text-center whitespace-nowrap w-px">Record No.</th>
+                  <th class="px-4 py-3 text-center whitespace-nowrap">Meeting Name</th>
+                  <th class="px-4 py-3 text-center whitespace-nowrap">Meeting Code</th>
+                  <th class="px-4 py-3 text-center whitespace-nowrap">Meeting Date</th>
+                  <th class="px-4 py-3 text-center whitespace-nowrap">Generated Time</th>
+                  <th class="px-4 py-3 text-center whitespace-nowrap">Duration</th>
+                  <th class="px-4 py-3 text-center whitespace-nowrap">Total Participants</th>
+                  <th class="px-4 py-3 text-center whitespace-nowrap">View Record</th>
+                  <th class="px-4 py-3 text-center whitespace-nowrap">Group Tag</th>
+                  <th class="px-4 py-3 text-center whitespace-nowrap">Delete</th>
+                </tr>
+              </thead>
+              <tbody id="tableRecordBody" class="text-xs font-semibold">
+                <!-- Add records automatically -->
+              </tbody>
+            </table>
+
+            <!-- ZERO STATE TEMPLATE -->
+            <div id="emptyStateFallback" class="hidden py-45 text-center">
+              <span class="text-3xl block mb-2">📁</span>
+              <h3 class="text-base font-bold text-slate-700">No attendance records yet</h3>
+              <p class="text-slate-500 text-sm mt-0.5">Start tracking a Google Meet session using the Presynce extension to generate records.</p>
+              <a href="howToTutorials.html?feature=track-attendance" class="mt-4 inline-block px-4 py-2 text-xs font-semibold rounded bg-brand-blueline text-white"> Learn How It Works </a>
+            </div>
+          </div>
+        </div>
+        <!-- GROUP SELECTOR MODAL DIALOG POPUP -->
+        <div id="assignGroupModalContainer"></div>
+        <div id="confirmModalContainer"></div>
+      </main>
+    </div>
+
+    <!-- SCRIPTSSSSSSSS -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+
+    <script src="../src/shared/firebaseConfig.js"></script>
+    <script src="../src/shared/authManager.js"></script>
+    <script src="../src/shared/backupManager.js"></script>
+    <script src="../src/shared/authRequiredModal.js"></script>
+
+    <script src="../src/shared/utils.js"></script>
+    <script src="../src/shared/loadComponents.js"></script>
+    <script src="../src/features/groupManager.js"></script>
+    <script src="../src/shared/assignGroupModal.js"></script>
+    <script src="../src/shared/reusableModal.js"></script>
+
+    <script src="../src/features/attendanceDashboard.js"></script>
+
+    <script src="../src/shared/navAuth.js"></script>
+    <script src="../src/shared/page.js"></script>
+  </body>
+</html>

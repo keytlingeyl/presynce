@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Presynce Attendance Tracker",
+  "version": "1.0.0",
+  "description": "Automatically track Google Meet attendance with standardized participant name formatting and longitudinal attendance matrices across multiple sessions.",
+  "icons": {
+    "16": "images/logo16.png",
+    "48": "images/logo48.png",
+    "128": "images/logo128.png"
+  },
+  "action": {
+    "default_icon": "images/logo32.png",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "js": ["content.js"],
+      "matches": ["https://meet.google.com/*"],
+      "run_at": "document_idle"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+<!-- GROUP SELECTOR MODAL DIALOG POPUP -->
+<div id="assignGroupModal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm items-center justify-center z-50 transition-opacity">
+  <div class="bg-white rounded-2xl shadow-xl border border-slate-200 w-full max-w-md p-6 relative mx-4">
+    <!-- Close Cross Trigger Button Toggle -->
+    <button id="closeModalBtn" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 font-bold text-lg">&times;</button>
+
+    <h3 class="text-base font-bold text-slate-900 mb-4">Manage Group Assignment Tag</h3>
+
+    <!-- Meta Data Session Snapshot Target Indicator Box -->
+    <div class="bg-slate-50 border border-slate-100 rounded-xl p-4 mb-5 space-y-2 text-xs">
+      <div class="flex justify-between"><span class="text-slate-400">Meeting Name:</span> <span id="modalMeetName" class="font-bold text-slate-800"></span></div>
+      <div class="flex justify-between"><span class="text-slate-400">Code:</span> <span id="modalMeetCode" class="font-mono bg-slate-200 px-1 rounded text-slate-700"></span></div>
+      <div class="flex justify-between"><span class="text-slate-400">Date:</span> <span id="modalMeetDate" class="text-slate-700"></span></div>
+      <div class="flex justify-between"><span class="text-slate-400">Duration:</span> <span id="modalMeetDuration" class="font-mono text-slate-700"></span></div>
+      <div class="flex justify-between"><span class="text-slate-400">Total Participants:</span> <span id="modalMeetParticipants" class="text-slate-700"></span></div>
+    </div>
+
+    <!-- Existing Groups Action Selection Roster Control Menu -->
+    <div id="existingGroupsWrapper" class="space-y-3">
+      <label for="groupDropdown" class="block text-xs font-bold text-slate-500 uppercase tracking-wider">Save this record to</label>
+      <select id="groupDropdown" class="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs font-semibold rounded-xl p-2.5 focus:outline-none focus:border-indigo-500 transition-all">
+        <!-- Dropdown structure generates in Javascript layer -->
+      </select>
+
+      <button id="submitGroupBtn" class="w-full mt-2 inline-flex items-center justify-center py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-sm transition-all">Update Group Tag</button>
+    </div>
+
+    <!-- Context Link Footnote Redirect System -->
+    <div id="noGroupsWrapper" class="text-center pt-4 border-t border-slate-100 mt-4">
+      <p class="text-[11px] font-medium text-slate-400">
+        Need a clean grouping folder variant?
+        <a href="classesPage.html" class="text-indigo-600 font-bold hover:text-indigo-800 underline transition-all page-link">Manage custom groups here</a>
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Groups | Presynce Attendance Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="icon" href="../assets/logo128.png" />
+    <script src="../src/shared/trapezoid-engine.js"></script>
+    <link rel="stylesheet" href="../dist/output.css" />
+  </head>
+  <body class="scroll-chalk">
+    <nav class="sticky top-0 flex items-center w-full h-10 bg-[#cccccc] z-1000">
+      <div class="relative custom-trapezoid flex-3" data-color="white" data-slant="83">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="../index.html" class="absolute inset-0 flex items-center text-xl font-normal text-black cursor-pointer justify-left left-5">
+          <img src="../assets/Full Logo.png" alt="Logo of Presynce" class="h-full max-h-[70%] w-auto object-contain" />
+          Attendance Tracker
+        </a>
+      </div>
+
+      <div class="relative flex-1 custom-trapezoid" data-color="#dc4437">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="contactUs.html" class="absolute inset-0 flex items-center justify-center font-bold text-black cursor-pointer text-m"> Contact Us </a>
+      </div>
+
+      <div class="relative flex-1 custom-trapezoid" data-color="#4286F5">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="howToTutorials.html" class="absolute inset-0 flex items-center justify-center font-bold text-brand-chalk cursor-pointer text-m">Guide & Notes</a>
+      </div>
+
+      <div class="nav-active relative flex-1 custom-trapezoid" data-color="#FFEEBD">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="classesPage.html" class="absolute inset-0 flex items-center justify-center font-bold cursor-pointer text-brand-board text-m">Groups</a>
+      </div>
+
+      <div class="relative flex-1 custom-trapezoid z-99" data-color="#002915">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="saveAttendance.html" class="absolute inset-0 flex items-center justify-center font-bold cursor-pointer text-brand-chalk text-m">Records</a>
+      </div>
+
+      <div class="relative flex-1 cursor-pointer custom-trapezoid" data-color="#c9a0dc">
+        <div class="w-full h-full shape-holder"></div>
+        <a href="signin.html" class="absolute inset-0 flex items-center justify-center font-bold text-black cursor-pointer text-m">Sign in</a>
+      </div>
+    </nav>
+
+    <div class="page-workspace">
+      <main class="w-full min-h-[calc(100vh-40px)] p-6 mx-auto bg-brand-chalk z-1000">
+        <div class="flex flex-row items-center mt-3">
+          <div class="flex-1">
+            <h1 class="font-heading text-4xl text-brand-board">Groups</h1>
+            <p class="">Organize session to view longitudinal matrices</p>
+          </div>
+          <div class="justify-self-end"><button id="openCreateGroupModalBtn" onclick="openCreateGroupModal()" class="rounded-2xl bg-brand-board text-brand-chalk px-5 py-1 cursor-pointer">+ Create New Group</button></div>
+        </div>
+        <div id="groupsContainer" class="mt-5 flex gap-10 flex-wrap justify-around">
+          <!-- Add folders dynamically later -->
+
+          <div class="group relative h-50 w-fit overflow-visible">
+            <img src="../assets/Open Folder.svg" alt="" class="h-full w-auto opacity-0" />
+
+            <img src="../assets/Default Folder.svg" alt="" class="absolute left-1/2 top-1/2 h-full w-auto -translate-x-1/2 -translate-y-1/2 opacity-100 group-hover:opacity-0 transition-opacity duration-200 ease-out will-change-opacity" />
+            <img src="../assets/Open Folder.svg" alt="" class="absolute left-1/2 top-1/2 h-full w-auto -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-out will-change-opacity" />
+            <div class="groupNameContainer absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center h-[84%] w-[90%] group-hover:h-[74%]">
+              <span id="groupName" class="w-[80%] text-center text-brand-chalk font-caveat text-2xl leading-tight wrap-break-word overflow-hidden justify-center line-clamp-3">Group Name</span>
+              <span class="text-center text-white text-sm font-medium line-clamp-2">by Teacher / Handler</span>
+
+              <div class="mt-1 flex items-center gap-2 text-sm text-white opacity-100 translate-y-2 group:hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 backdrop-blur-sm">
+                <span class="material-symbols-outlined text-sm">groups</span>
+                <span>${group.participants} Participants</span>
+              </div>
+            </div>
+            <span class="open-options material-symbols-outlined text-4xl! absolute bottom-0 right-5 text-brand-chalk hover:bg-green-500/20 rounded-full leading-none cursor-pointer select-none"> more_horiz </span>
+
+            <div class="folder-options hidden absolute -right-40 bg-white w-50 rounded-lg py-3 z-50">
+              <div class="flex gap-3 px-3 py-1 hover:bg-gray-200 cursor-pointer items-center">
+                <span class="material-symbols-outlined"> file_open </span>
+                <p class="text-base m-0">Open in new tab</p>
+              </div>
+
+              <div class="flex gap-3 px-3 py-1 hover:bg-gray-200 cursor-pointer items-center">
+                <span class="material-symbols-outlined"> edit </span>
+                <p class="text-base m-0">Rename</p>
+              </div>
+
+              <div class="flex gap-3 px-3 py-1 hover:bg-gray-200 cursor-pointer items-center">
+                <span class="material-symbols-outlined"> download </span>
+                <p class="text-base m-0">Download</p>
+              </div>
+
+              <div class="flex gap-3 px-3 py-1 hover:bg-gray-200 cursor-pointer items-center">
+                <span class="material-symbols-outlined"> person_add </span>
+                <p class="text-base m-0">Share</p>
+              </div>
+              <div class="flex gap-3 px-3 py-1 hover:bg-gray-200 cursor-pointer items-center">
+                <span class="material-symbols-outlined"> delete </span>
+                <p class="text-base m-0">Delete</p>
+              </div>
+            </div>
+          </div>
+
+          <img src="../assets/Default Folder.svg" alt="" class="h-50" />
+          <img src="../assets/Default Folder.svg" alt="" class="h-50" />
+          <img src="../assets/Default Folder.svg" alt="" class="h-50" />
+        </div>
+        <!-- CREATE GROUP MODAL POPUP WITH SIDE-BY-SIDE HINTS -->
+        <div id="createGroupModal" class="hidden fixed inset-0 bg-black/30 items-center justify-center z-50 transition-opacity p-4">
+          <div class="bg-white rounded-2xl shadow-xl border border-slate-200 w-full max-w-4xl flex flex-col lg:flex-row overflow-hidden relative transition-all">
+            <!-- Close Toggle X button -->
+            <button onclick="closeCreateGroupModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 font-bold text-lg z-10">&times;</button>
+
+            <!-- Left Pane: The Form Area -->
+            <div class="w-full lg:w-5/12 p-6 border-b lg:border-b-0 lg:border-r border-slate-100 flex flex-col justify-center">
+              <h3 class="text-base font-bold text-slate-900 mb-1">Create New Group Folder</h3>
+              <p class="text-slate-400 text-xs mb-4">Initialize a custom classification folder to sort your incoming logs.</p>
+
+              <form id="groupCreationForm" onsubmit="createGroupFolder(event)" class="space-y-4 text-left">
+                <!-- Input: Group Name -->
+                <div>
+                  <label for="modalGroupName" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5"> Group Name <span class="text-rose-500">*</span> </label>
+                  <input type="text" id="modalGroupName" required placeholder="e.g., BSIT 4-1 Core Team" class="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs font-semibold rounded-xl p-3 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all" />
+                </div>
+
+                <!-- Input: Teacher Name -->
+                <div>
+                  <label for="modalTeacherName" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5"> Teacher / Handler <span class="text-slate-400 font-normal lowercase">(optional)</span> </label>
+                  <input type="text" id="modalTeacherName" placeholder="e.g., Prof. John Doe or Office In-Charge" class="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs font-semibold rounded-xl p-3 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all" />
+                </div>
+
+                <!-- Dialog CTA Actions Footer Block -->
+                <div class="flex gap-2.5 pt-2">
+                  <button type="button" onclick="closeCreateGroupModal()" class="w-1/2 py-2.5 border border-slate-200 text-slate-700 font-bold text-xs rounded-xl hover:bg-slate-50 transition-all">Cancel</button>
+                  <button type="submit" class="w-1/2 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-sm transition-all">Save Group Profile</button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Right/Bottom Pane: Hints Dashboard Module (6 Separated Boxes Matrix Layout) -->
+            <div class="w-full lg:w-7/12 bg-slate-50 p-6 flex flex-col justify-center">
+              <div class="text-xs">
+                <div class="flex items-center gap-1.5 text-black font-bold uppercase tracking-wider mb-2">
+                  <span>💡</span> Flexible Structure Guide
+                  <div class="flex items-center gap-1.5 text-[11px]">
+                    <span class="text-slate-300">•</span>
+                    <a href="https://example.com/guide" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-semibold uppercase tracking-wider">Learn more</a>
+                  </div>
+                </div>
+
+                <p class="text-slate-500 leading-relaxed mb-4">A <strong>Group Name</strong> is open-ended. You can structure your naming convention to represent single structural classifications depending on your requirements:</p>
+
+                <!-- 6 Isolated Content Hint Boxes -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <!-- Box 1 -->
+                  <div class="bg-white border border-slate-200/60 rounded-xl p-3 shadow-sm">
+                    <span class="font-bold text-slate-700 block text-[12px] mb-0.5">🏫 Class</span>
+                    <span class="text-slate-400 font-medium text-[11px] leading-snug block">Grade 11, Grade 12 Senior High</span>
+                  </div>
+                  <!-- Box 2 -->
+                  <div class="bg-white border border-slate-200/60 rounded-xl p-3 shadow-sm">
+                    <span class="font-bold text-slate-700 block text-[12px] mb-0.5">📚 Subject</span>
+                    <span class="text-slate-400 font-medium text-[11px] leading-snug block">Calculus, Introduction to Python</span>
+                  </div>
+                  <!-- Box 3 -->
+                  <div class="bg-white border border-slate-200/60 rounded-xl p-3 shadow-sm">
+                    <span class="font-bold text-slate-700 block text-[12px] mb-0.5">🔠 Section</span>
+                    <span class="text-slate-400 font-medium text-[11px] leading-snug block">Section Delta, Diamond, Emerald</span>
+                  </div>
+                  <!-- Box 4 -->
+                  <div class="bg-white border border-slate-200/60 rounded-xl p-3 shadow-sm">
+                    <span class="font-bold text-slate-700 block text-[12px] mb-0.5">🧱 Block</span>
+                    <span class="text-slate-400 font-medium text-[11px] leading-snug block">BSCS Block 3-A, BSIT 4-1</span>
+                  </div>
+                  <!-- Box 5 -->
+                  <div class="bg-white border border-slate-200/60 rounded-xl p-3 shadow-sm">
+                    <span class="font-bold text-slate-700 block text-[12px] mb-0.5">🎓 Year Level</span>
+                    <span class="text-slate-400 font-medium text-[11px] leading-snug block">Batch 2026 Seniors, Freshmen</span>
+                  </div>
+                  <!-- Box 6 -->
+                  <div class="bg-white border border-slate-200/60 rounded-xl p-3 shadow-sm">
+                    <span class="font-bold text-slate-700 block text-[12px] mb-0.5">💼 Department</span>
+                    <span class="text-slate-400 font-medium text-[11px] leading-snug block">HR Core Team, Engineering Division</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="confirmModalContainer"></div>
+      </main>
+    </div>
+
+    <script src="../src/shared/utils.js"></script>
+    <script src="../src/features/groupManager.js"></script>
+    <script src="../src/features/createGroupFolder.js"></script>
+    <script src="../src/shared/navAuth.js"></script>
+    <script src="../src/shared/reusableModal.js"></script>
+    <script src="../src/shared/page.js"></script>
+  </body>
+</html>
