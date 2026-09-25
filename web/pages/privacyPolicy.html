@@ -53,7 +53,7 @@
         <header class="max-w-5xl mx-auto mb-10">
           <h1 class="font-heading text-5xl text-brand-board">Privacy Policy</h1>
           <p class="mt-3 text-base max-w-2xl text-brand-board">How the Presynce Chrome extension and web dashboard handle your information, in plain language.</p>
-          <p class="mt-2 text-sm text-slate-600">Last updated: September 5, 2026</p>
+          <p class="mt-2 text-sm text-slate-600">Last updated: September 25, 2026</p>
         </header>
 
         <div class="max-w-5xl mx-auto flex flex-col lg:flex-row gap-10">
@@ -134,7 +134,7 @@
                   </tr>
                   <tr>
                     <td class="border border-slate-200 px-3 py-2.5 text-left align-top">Google account name, email address, profile photo, and account ID</td>
-                    <td class="border border-slate-200 px-3 py-2.5 text-left align-top">Google Sign-In (only if you choose to sign in)</td>
+                    <td class="border border-slate-200 px-3 py-2.5 text-left align-top">Google Sign-In (only if you choose to sign in on the web dashboard)</td>
                     <td class="border border-slate-200 px-3 py-2.5 text-left align-top">Identifying your account for cloud backup and showing your account details</td>
                   </tr>
                   <tr>
@@ -152,22 +152,25 @@
             <h2 id="how-we-use" class="mt-10 mb-3 font-heading text-2xl text-brand-board scroll-mt-16">How we use it</h2>
             <ul class="mb-4 ml-5 list-disc">
               <li class="mb-1.5">To capture attendance for meetings you choose to track and to produce standardized, alphabetized attendance records.</li>
-              <li class="mb-1.5">To consolidate records into groups and generate summaries, absentee lists, and exports (CSV and PDF).</li>
+              <li class="mb-1.5">To consolidate records into groups and generate summaries, absentee lists, and exports (Excel and PDF).</li>
               <li class="mb-1.5">To back up and restore your records and groups when you sign in and enable backup.</li>
               <li class="mb-1.5">To keep the Service secure and working, and to respond to support or feedback you send us.</li>
             </ul>
             <p class="mb-4">We do not use your data for advertising, we do not sell it, and we do not use it to build profiles or to make automated decisions about participants.</p>
 
             <h2 id="where-stored" class="mt-10 mb-3 font-heading text-2xl text-brand-board scroll-mt-16">Where your data lives</h2>
+            <div class="mb-4 border-l-4 border-brand-blueline bg-brand-blueline/5 px-4 py-3.5 text-sm">
+              <p class="mb-0"><strong>Scope note.</strong> The Chrome Extension itself only reads the Google Meet participant list while you are actively tracking a session — it does not perform sign-in, does not store your Google account credentials, and does not connect to Firebase or any cloud service directly. Sign-in, cloud backup, and restore are features of the separate web dashboard described below, not of the extension.</p>
+            </div>
             <h3 class="mt-6 mb-1.5 font-bold text-brand-board">In your browser (default)</h3>
             <p class="mb-4">Attendance records, groups, and settings are stored in your browser's local storage on the dashboard's website. This data stays on your device and is not uploaded unless you turn on cloud backup. Because it lives in your browser, clearing site data, switching browsers or devices, or using private windows can remove or hide it.</p>
             <h3 class="mt-6 mb-1.5 font-bold text-brand-board">In the extension</h3>
-            <p class="mb-4">While you track attendance, the extension holds the session in memory. About every few seconds it saves a temporary recovery copy to the Google Meet page's local storage so that an interrupted session can be recovered. This copy is removed after the dashboard confirms the record was saved.</p>
+            <p class="mb-4">While you track attendance, the extension holds the session in memory. About every few seconds it saves a temporary recovery copy to the Google Meet page's local storage so that an interrupted session can be recovered. This copy is removed after the dashboard confirms the record was saved. The extension does not have its own permanent storage separate from this temporary recovery copy.</p>
             <h3 class="mt-6 mb-1.5 font-bold text-brand-board">Between the extension and the dashboard</h3>
             <p class="mb-4">When you stop tracking, the extension opens the Presynce dashboard in a new tab. The dashboard asks the Meet tab for the record using the browser's built-in messaging, and each side accepts messages only from the expected website address. The record goes from your Meet tab directly to your dashboard tab; it does not pass through a Presynce server.</p>
 
             <h2 id="cloud-backup" class="mt-10 mb-3 font-heading text-2xl text-brand-board scroll-mt-16">Sign-in and cloud backup</h2>
-            <p class="mb-4">Sign-in and cloud backup are optional. If you sign in with Google, we use Firebase Authentication to verify your account and receive your name, email address, profile photo, and account ID.</p>
+            <p class="mb-4">Sign-in and cloud backup are optional, and are only available on the web dashboard — not inside the Chrome Extension. If you sign in with Google, we use Firebase Authentication to verify your account and receive your name, email address, profile photo, and account ID.</p>
             <p class="mb-4">If you turn on Auto Backup or run a manual backup, your attendance records (including participant names, times, and avatar URLs) and groups are copied to Cloud Firestore, saved under your account. Backups are intended to be readable and writable only by the signed-in owner of that account. You can restore a backup to a device, and you can choose whether to merge it with the records already on that device. If Auto Backup is on, changes you make (for example, adding or deleting a record) are copied to the cloud automatically.</p>
             <p class="mb-4">Signing out does not delete your cloud backup. See <a href="#retention" class="text-brand-blueline underline hover:text-brand-board">Retention and deletion</a> for how to remove it.</p>
 
@@ -177,7 +180,7 @@
               <li class="mb-1.5"><strong>Service providers.</strong> Google (Firebase Authentication and Cloud Firestore) processes account and backup data on our behalf. Vercel hosts the dashboard and may keep standard server logs such as IP address and browser type.</li>
               <li class="mb-1.5"><strong>Content loaded from other sites.</strong> The dashboard loads fonts and icons from Google Fonts, Firebase scripts from Google, and helper libraries from jsDelivr and cdnjs (used for Excel/PDF export). Your browser contacts those providers directly when a page loads, which may reveal your IP address to them. Participant avatars load from Google's image servers.</li>
               <li class="mb-1.5"><strong>Legal reasons.</strong> If required by law, court order, or to protect rights and safety, we may disclose information to the extent the law requires.</li>
-              <li class="mb-1.5"><strong>Exports you create.</strong> Files you export (CSV, PDF) are created on your device. What you do with them is up to you.</li>
+              <li class="mb-1.5"><strong>Exports you create.</strong> Files you export (Excel, PDF) are created on your device. What you do with them is up to you.</li>
             </ul>
 
             <h2 id="google-limited-use" class="mt-10 mb-3 font-heading text-2xl text-brand-board scroll-mt-16">Google user data</h2>
@@ -187,7 +190,7 @@
               <li class="mb-1.5">It is not sold, and it is not transferred to third parties except as needed to provide those features, to comply with law, or as part of a merger or sale with notice to you.</li>
               <li class="mb-1.5">It is not used for advertising, including personalized or retargeted ads.</li>
               <li class="mb-1.5">It is not read by humans unless you ask us to (for example, to fix a bug you report), it is needed for security, or the law requires it.</li>
-              <li class="mb-1.5">The extension reads only the minimum needed: participant names, times, avatar URLs, and meeting details.</li>
+              <li class="mb-1.5">The extension reads only the minimum needed: participant names, times, avatar URLs, and meeting details — all visible on the Google Meet page itself, and only while you are actively tracking.</li>
             </ul>
             <p class="mb-4">Presynce is an independent project and is not affiliated with, endorsed by, or sponsored by Google LLC. Google, Google Meet, Chrome, and Firebase are trademarks of Google LLC.</p>
 
@@ -195,7 +198,7 @@
             <ul class="mb-4 ml-5 list-disc">
               <li class="mb-1.5"><strong>On your device.</strong> Records and groups stay until you delete them or clear your browser data. The dashboard keeps up to the 500 most recent records; older ones are removed automatically when the limit is exceeded. Deleting a record in the dashboard permanently removes it from that browser.</li>
               <li class="mb-1.5"><strong>In the cloud.</strong> Backups stay until they are replaced by a newer backup or you ask us to delete them. Turning off Auto Backup stops new backups but does not remove earlier ones.</li>
-              <li class="mb-1.5"><strong>Deleting your cloud data.</strong> Email <a href="mailto:keytlingeyl@gmail.com" class="text-brand-blueline underline hover:text-brand-board">keytlingeyl@gmail.com</a> from the Google account you used to sign in and ask for your backup and account data to be deleted. We will confirm and complete the deletion within a reasonable period, and no later than 30 days.</li>
+              <li class="mb-1.5"><strong>Deleting your cloud data.</strong> Email <a href="mailto:keytlingeyl@gmail.com" target="_blank" class="text-brand-blueline underline hover:text-brand-board">keytlingeyl@gmail.com</a> from the Google account you used to sign in and ask for your backup and account data to be deleted. We will confirm and complete the deletion within a reasonable period, and no later than 30 days.</li>
               <li class="mb-1.5"><strong>Temporary recovery copy.</strong> The recovery copy in the Meet tab is removed once the dashboard confirms the record was saved.</li>
             </ul>
 
@@ -211,14 +214,14 @@
               <li class="mb-1.5">correct inaccurate data;</li>
               <li class="mb-1.5">ask for deletion or blocking of your data;</li>
               <li class="mb-1.5">object to or restrict certain processing, and withdraw consent at any time;</li>
-              <li class="mb-1.5">receive your data in a portable format (CSV and Excel exports serve this purpose); and</li>
+              <li class="mb-1.5">receive your data in a portable format (PDF and Excel exports serve this purpose); and</li>
               <li class="mb-1.5">complain to your data protection authority.</li>
             </ul>
-            <p class="mb-4">These rights are recognized under the Philippine Data Privacy Act of 2012 (Republic Act No. 10173), which we follow, and under laws such as the European Union's General Data Protection Regulation (GDPR) for people in the EU/EEA. In the Philippines, you may contact the National Privacy Commission (<a href="https://privacy.gov.ph" target="_blank" rel="noopener" class="text-brand-blueline underline hover:text-brand-board">privacy.gov.ph</a>). To use any of these rights with us, email <a href="mailto:keytlingeyl@gmail.com" class="text-brand-blueline underline hover:text-brand-board">keytlingeyl@gmail.com</a>. Because most data stays on your own device, you can also exercise much of this control directly: view, edit, export, or delete records in the dashboard.</p>
+            <p class="mb-4">These rights are recognized under the Philippine Data Privacy Act of 2012 (Republic Act No. 10173), which we follow, and under laws such as the European Union's General Data Protection Regulation (GDPR) for people in the EU/EEA. In the Philippines, you may contact the National Privacy Commission (<a href="https://privacy.gov.ph" target="_blank" rel="noopener" class="text-brand-blueline underline hover:text-brand-board">privacy.gov.ph</a>). To use any of these rights with us, email <a href="mailto:keytlingeyl@gmail.com" target="_blank" class="text-brand-blueline underline hover:text-brand-board">keytlingeyl@gmail.com</a>. Because most data stays on your own device, you can also exercise much of this control directly: view, edit, export, or delete records in the dashboard.</p>
 
             <h2 id="organizers" class="mt-10 mb-3 font-heading text-2xl text-brand-board scroll-mt-16">Meeting organizers and participants</h2>
             <p class="mb-4">Presynce is a tool used by meeting hosts, teachers, and coordinators ("organizers"). When an organizer tracks a meeting, the names and times of the other participants are recorded. For that participant data, the organizer (or their school or organization) decides why and how it is used, and is responsible for having a lawful basis to record attendance, for telling participants that attendance is being recorded, and for following their institution's privacy rules. We act only as the tool provider and do not receive participant data unless the organizer backs it up to the cloud.</p>
-            <p class="mb-4">If you are a participant and want your name corrected or removed from a record, please ask the organizer who ran the meeting. If you cannot reach them, email <a href="mailto:keytlingeyl@gmail.com" class="text-brand-blueline underline hover:text-brand-board">keytlingeyl@gmail.com</a> and we will help where we are able.</p>
+            <p class="mb-4">If you are a participant and want your name corrected or removed from a record, please ask the organizer who ran the meeting. If you cannot reach them, email <a href="mailto:keytlingeyl@gmail.com" target="_blank" class="text-brand-blueline underline hover:text-brand-board">keytlingeyl@gmail.com</a> and we will help where we are able.</p>
 
             <h2 id="children" class="mt-10 mb-3 font-heading text-2xl text-brand-board scroll-mt-16">Children and minors</h2>
             <p class="mb-4">The Service is designed for teachers, coordinators, and professionals. It is not directed to children under 13, and we do not knowingly collect personal information directly from them. We do not collect ages and cannot tell whether a participant in a meeting is a minor. If you track a class that includes students under 13 or under the age of consent where you live, you are responsible for getting any permissions your school, local law, or laws such as the U.S. Children's Online Privacy Protection Act (COPPA) require. Do not sign in to Presynce if you are under 13. If you believe a child's information was backed up to the cloud, contact us and we will remove it.</p>
@@ -228,8 +231,8 @@
             <ul class="mb-4 ml-5 list-disc">
               <li class="mb-1.5"><strong>Philippines.</strong> We follow the Data Privacy Act of 2012 (RA 10173). You may complain to the National Privacy Commission.</li>
               <li class="mb-1.5"><strong>European Economic Area, United Kingdom, and Switzerland.</strong> Where GDPR or UK GDPR applies, our legal bases are your consent (for example, when you sign in and turn on cloud backup) and our legitimate interest in running and securing the Service. You may complain to your local data protection authority.</li>
-              <li class="mb-1.5"><strong>United States (including California and other states with privacy laws).</strong> We do not sell or share personal information for advertising, and we do not use it for profiling. You may ask to access, correct, or delete your information, and we will not treat you differently for doing so. Requests go to <a href="mailto:keytlingeyl@gmail.com" class="text-brand-blueline underline hover:text-brand-board">keytlingeyl@gmail.com</a>; we may need to confirm you own the account before acting.</li>
-              <li class="mb-1.5"><strong>Canada.</strong> You may withdraw consent and ask to access or correct your information at any time, by emailing <a href="mailto:keytlingeyl@gmail.com" class="text-brand-blueline underline hover:text-brand-board">keytlingeyl@gmail.com</a>.</li>
+              <li class="mb-1.5"><strong>United States (including California and other states with privacy laws).</strong> We do not sell or share personal information for advertising, and we do not use it for profiling. You may ask to access, correct, or delete your information, and we will not treat you differently for doing so. Requests go to <a href="mailto:keytlingeyl@gmail.com" target="_blank" class="text-brand-blueline underline hover:text-brand-board">keytlingeyl@gmail.com</a>; we may need to confirm you own the account before acting.</li>
+              <li class="mb-1.5"><strong>Canada.</strong> You may withdraw consent and ask to access or correct your information at any time, by emailing <a href="mailto:keytlingeyl@gmail.com" target="_blank" class="text-brand-blueline underline hover:text-brand-board">keytlingeyl@gmail.com</a>.</li>
               <li class="mb-1.5"><strong>Do Not Track.</strong> There is no common standard for Do Not Track signals. The Service does not run advertising or cross-site tracking, so it behaves the same whether or not the signal is on.</li>
             </ul>
 
@@ -243,7 +246,7 @@
             <p class="mb-4">We may update this policy as the Service changes, for example when new features are added. We will change the "Last updated" date above and, for significant changes, show a notice in the dashboard or on the extension's store page. Continuing to use the Service after a change means you accept the updated policy.</p>
 
             <h2 id="contact" class="mt-10 mb-3 font-heading text-2xl text-brand-board scroll-mt-16">Contact us</h2>
-            <p class="mb-4">Questions, requests, or concerns about privacy? Email <a href="mailto:keytlingeyl@gmail.com" class="text-brand-blueline underline hover:text-brand-board">keytlingeyl@gmail.com</a>.</p>
+            <p class="mb-4">Questions, requests, or concerns about privacy? Email <a href="mailto:keytlingeyl@gmail.com" target="_blank" class="text-brand-blueline underline hover:text-brand-board">keytlingeyl@gmail.com</a>.</p>
             <p class="mb-4">See also our <a href="termsOfService.html" class="text-brand-blueline underline hover:text-brand-board">Terms of Service</a>.</p>
           </article>
         </div>
