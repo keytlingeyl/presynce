@@ -8,6 +8,13 @@ Presynce is a serverless, dual-component attendance management system for Google
 
 ---
 
+## 🚀 Live Access and Downloads
+
+- 🧩 **Chrome Extension**: [Install from Chrome Web Store](https://chrome.google.com/webstore)
+- 📊 **Web Dashboard**: [https://presynce.vercel.app](https://presynce.vercel.app/)
+
+---
+
 ## ✨ Features
 
 - **Live attendance capture** — tracks participant join times and total duration present directly from the Google Meet UI, including rejoins.
@@ -22,6 +29,13 @@ Presynce is a serverless, dual-component attendance management system for Google
 - **Local-first** — all data is stored in the browser by default; cloud sync is opt-in.
 
 ---
+
+## 📖 How It Works
+
+1. **Install Extension**: Add the Presynce Chrome Extension to your browser.
+2. **Track Meeting**: Join a Google Meet call and click the floating **Track Attendance** button.
+3. **Automatic Redirect**: Ending the call compiles the session and opens your **My Records** dashboard.
+4. **Organize & Export**: Assign sessions to Group Folders, inspect matrix reports, and export as CSV or PDF.
 
 ## 🛠 Tech Stack
 
@@ -93,84 +107,14 @@ presynce/
 
 ---
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js and npm
-- Google Chrome
-
-### 1. Clone and install
-
-```bash
-git clone https://github.com/<your-username>/presynce.git
-cd presynce/web
-npm install
-```
-
-### 2. Build Tailwind CSS
-
-```bash
-npm run dev     # watch mode
-npm run build   # production build (minified)
-```
-
-### 3. Configure Firebase (optional — required only for cloud backup)
-
-Create a Firebase project (Spark/free plan is enough) and enable:
-
-- **Authentication → Sign-in method → Google**
-- **Firestore Database** (production mode), with rules:
-  ```
-  rules_version = '2';
-  service cloud.firestore {
-    match /databases/{database}/documents {
-      match /users/{uid} {
-        allow read, write: if request.auth != null && request.auth.uid == uid;
-      }
-    }
-  }
-  ```
-- **Authentication → Settings → Authorized domains** — add your deployed domain.
-
-Paste your web app config into `src/shared/firebaseConfig.js`.
-
-### 4. Run locally
-
-Serve the project root with any static server (e.g. `npx serve .`) and open `index.html`.
-
-### 5. Load the Chrome Extension (local testing)
-
-1. Go to `chrome://extensions`
-2. Enable **Developer mode**
-3. Click **Load unpacked** and select the `extension/` folder
-4. In `extension/content.js`, set `DEV_MODE` and `PROD_URL` to match your environment
-
-The extension is submitted to the **Chrome Web Store** separately as a packaged `.zip` of the `extension/` folder — it is not auto-deployed from this repo.
-
----
-
-## 🌐 Deployment
-
-| Component    | Where            | How                                                                                                                                                              |
-| ------------ | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `web/`       | Vercel           | Set Vercel's **Root Directory** to `web/` in project settings; deploys on push.                                                                                  |
-| `extension/` | Chrome Web Store | Manually zipped and uploaded via the [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole) — not connected to this repo's CI/CD. |
-
-Before deploying to production:
-
-- Set `DEV_MODE = false` and `PROD_URL` to the live Vercel domain in `extension/content.js`, then repackage and re-upload the extension.
-- Confirm the Vercel domain is added to Firebase Authorized Domains.
-- Confirm Firestore rules are locked per-account (see above).
-
----
-
 ## ⚠️ Known Limitations
 
-- Records and groups are stored in the browser's `localStorage`; clearing site data or switching browsers/devices will remove local data (cloud backup is the recovery path for this).
-- A retention ceiling of 500 records is enforced — older records are trimmed automatically past that.
-- Name standardization depends on the display name Google Meet reports; it cannot correct or verify a participant's identity.
-- Requires the Google Chrome desktop browser; not built for mobile.
+- **Local storage:** Records and groups are stored in the browser's `localStorage` by default. Clearing site data or switching browsers or devices removes locally stored records unless they have been backed up to the cloud.
+- **Record retention:** A maximum of 500 attendance records is retained locally. Older records are automatically trimmed when the limit is exceeded.
+- **Name standardization:** Name formatting depends on the participant display name reported by Google Meet and cannot independently verify a participant's identity.
+- **Google Meet dependency:** Attendance capture depends on information exposed through the Google Meet meeting interface and may be affected by changes to Google Meet.
+- **Desktop browser requirement:** The Chrome Extension requires Google Chrome on a desktop environment and is not designed for mobile browsers.
+- **Cloud backup:** Cloud backup is optional and requires Google Sign-In. Local attendance tracking does not require an account.
 
 ---
 
