@@ -29,8 +29,6 @@
   height: 1em;
   overflow: hidden; /* clips any invisible fallback text overrun during block period */
   white-space: nowrap;
-  color: transparent;
-  text-shadow: 0 0 currentColor;
 }
 
 /* BORDER LINES */
