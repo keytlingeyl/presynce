@@ -10,7 +10,7 @@ Presynce is a serverless, dual-component attendance management system for Google
 
 ## 🚀 Live Access and Downloads
 
-- 🧩 **Chrome Extension**: [Install from Chrome Web Store](https://chrome.google.com/webstore)
+- 🧩 **Chrome Extension**: [Install from Chrome Web Store](https://chromewebstore.google.com/detail/presynce-attendance-track/dkelifbffgphfgmpppchhildimaakogo)
 - 📊 **Web Dashboard**: [https://presynce.vercel.app](https://presynce.vercel.app/)
 
 ---
