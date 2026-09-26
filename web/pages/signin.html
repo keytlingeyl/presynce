@@ -49,23 +49,23 @@
     </nav>
 
     <div class="page-workspace">
-      <main class="w-full min-h-[calc(100vh-40px)] p-6 mx-auto bg-[#c9a0dc]">
+      <main class="w-full min-h-[calc(100vh-40px)] p-6 mx-auto bg-[#c9a0dc] flex items-center">
         <div class="bg-board w-full h-[85vh] mt-2 flex flex-col items-center justify-center">
           <!-- DEFAULT STATE -->
           <div id="signed-out-state" class="hidden flex-col items-center justify-center">
-            <span class="material-symbols-outlined text-7xl text-white">backup</span>
-            <h1 class="font-heading text-3xl text-white m-5">Backup and Restore</h1>
-            <p class="text-white text-center mb-3">Securely save your attendance records and groups to the cloud.<br />Sign in with your Google account to sync and restore your data anytime.</p>
-            <button id="google-signin-button" type="button" class="w-fit px-5 py-2 m-5 border flex gap-2 bg-white border-slate-200 rounded-lg text-slate-700 font-semibold hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed">
-              <img class="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo" />
+            <span class="material-symbols-outlined text-7xl text-white 2xl:text-9xl">backup</span>
+            <h1 class="font-heading text-3xl text-white m-5 2xl:text-5xl 2xl:m-8">Backup and Restore</h1>
+            <p class="text-white text-center mb-3 2xl:text-3xl leading-loose">Securely save your attendance records and groups to the cloud.<br />Sign in with your Google account to sync and restore your data anytime.</p>
+            <button id="google-signin-button" type="button" class="w-fit px-5 py-2 m-5 border flex gap-2 bg-white border-slate-200 rounded-lg text-slate-700 font-semibold hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed 2xl:py-5 2xl:m-7 2xl:px-10 2xl:gap-5 2xl:text-2xl">
+              <img class="w-6 h-6 2xl:w-8 2xl:h-8" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo" />
               <span>Sign in with Google</span>
             </button>
             <div class="text-white text-center m-3">
-              <p class="text-sm">
+              <p class="text-sm 2xl:text-2xl">
                 By continuing, you agree to our
-                <a href="termsOfService.html" class="text-amber-200 hover:text-amber-300 hover:underline transition">Terms of Service</a>
+                <a href="termsOfService.html" target="_blank" class="text-amber-200 hover:text-amber-300 hover:underline transition">Terms of Service</a>
                 and acknowledge our
-                <a href="privacyPolicy.html" class="text-amber-200 hover:text-amber-300 hover:underline transition">Privacy Policy</a>.
+                <a href="privacyPolicy.html" target="_blank" class="text-amber-200 hover:text-amber-300 hover:underline transition">Privacy Policy</a>.
               </p>
             </div>
           </div>

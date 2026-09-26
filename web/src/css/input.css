@@ -193,10 +193,19 @@
    ========================= */
 
 .envelope-wrapper {
-  position: absolute;
+  position: fixed;
   top: 75%;
   left: 65%;
-  transform: rotate(-10deg) scale(2);
+  /* transform: rotate(-10deg) scale(2); */
+
+  --envelope-scale: clamp(2, 1.464vw, 2.8);
+
+  transform: rotate(-10deg) scale(var(--envelope-scale));
+  /* transform-origin: center center; */
+}
+
+.envelope-wrapper .mail {
+  pointer-events: auto;
 }
 
 /* ENVELOPE */
@@ -207,7 +216,7 @@
   background: #60a5fa;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  cursor: pointer;
+  cursor: default;
   transform-style: preserve-3d;
 }
 
@@ -362,4 +371,36 @@
   transition:
     transform 1s ease 0.5s,
     z-index 0s linear 0.5s;
+}
+
+/* RESPONSIVENESS MAIL GRAPHIC PA LANG & STEP-CARD */
+@media (min-width: 1280px) {
+  .envelope-wrapper {
+    --envelope-scale: 2;
+  }
+}
+
+@media (min-width: 1536px) {
+  .envelope-wrapper {
+    --envelope-scale: 2.2;
+  }
+}
+
+@media (min-width: 1920px) {
+  .step-card {
+    width: min(80vw);
+    height: 75vh;
+  }
+
+  .envelope-wrapper {
+    top: 75%;
+    left: 70%;
+    --envelope-scale: 2.5;
+  }
+}
+
+@media (min-width: 2560px) {
+  .envelope-wrapper {
+    --envelope-scale: 2.8;
+  }
 }
