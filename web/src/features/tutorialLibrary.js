@@ -33,7 +33,7 @@ const TUTORIALS = [
     overview: "The Presynce Chrome Extension runs inside a live Google Meet session and captures attendance automatically. Once activated, it detects every participant visible in the meeting, along with their join time and how long they stay present — including rejoins. Use this feature at the start of any Google Meet session you need attendance data for.",
     steps: [
       {
-        text: 'Install Chrome Extension <a href="" target="_blank" class="font-semibold text-blue-600">here</a>. Join your Google Meet session as usual, in Google Chrome, with the Presynce extension installed and enabled.',
+        text: 'Install Chrome Extension <a href="https://chromewebstore.google.com/detail/presynce-attendance-track/dkelifbffgphfgmpppchhildimaakogo" target="_blank" class="font-semibold text-blue-600">here</a>. Join your Google Meet session as usual, in Google Chrome, with the Presynce extension installed and enabled.',
       },
       {
         text: "Once you're in the meeting view, a floating <b>Track Attendance</b> button appears near the bottom-left of the window.",
