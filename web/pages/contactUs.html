@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../dist/output.css" />
     <script src="../src/shared/trapezoid-engine.js"></script>
   </head>
-  <body class="font-normal scroll-board overflow-hidden">
+  <body class="font-normal scroll-board">
     <nav class="sticky top-0 flex items-center w-full h-10 bg-[#cccccc] z-1">
       <div class="relative custom-trapezoid flex-3" data-color="white" data-slant="83">
         <div class="w-full h-full shape-holder"></div>
@@ -49,7 +49,7 @@
     </nav>
 
     <div class="page-workspace">
-      <main class="w-full min-h-[calc(100vh-40px)] p-6 bg-brand-redline z-1000 flex flex-col justify-center 2xl:px-15">
+      <main class="w-full min-h-[calc(100vh-40px)] p-6 bg-brand-redline z-1000 flex flex-col justify-start 2xl:px-15">
         <div class="w-full my-3 flex flex-row justify-between 2xl:my-7">
           <div>
             <h1 class="font-heading text-4xl text-brand-chalk 2xl:text-6xl">Contact Us</h1>
@@ -108,7 +108,7 @@
               <div>
                 <label for="message" class="block text-base font-medium uppercase text-white mb-2 2xl:text-2xl">Message or Feedback</label>
 
-                <textarea id="message" name="message" rows="5" placeholder="Share your feedback or report an issue..." class="w-full px-4 py-2.5 bg-white/70 border border-white/90 rounded-lg focus:outline-none focus:ring-4 focus:ring-rose-300/70 focus:border-rose-300 text-sm transition-all 2xl:py-5 2xl:text-xl" required></textarea>
+                <textarea id="message" name="message" placeholder="Share your feedback or report an issue..." class="w-full px-4 py-2.5 bg-white/70 border border-white/90 rounded-lg focus:outline-none focus:ring-4 focus:ring-rose-300/70 focus:border-rose-300 text-sm transition-all resize-y min-h-36 h-[20vh] 2xl:py-5 2xl:text-xl" required></textarea>
               </div>
 
               <button type="submit" class="w-full bg-emerald-800 hover:bg-emerald-700 text-white font-medium py-3 px-4 rounded-lg transition-colors text-sm shadow-md 2xl:py-5">Send Message</button>
@@ -116,7 +116,7 @@
           </div>
 
           <!-- RIGHT HALF: CONTENT -->
-          <div class="w-1/2">
+          <div class="w-1/2 overflow-hidden">
             <div class="">
               <h1 class="font-caveat text-2xl 2xl:text-5xl">A Message from the Developer</h1>
               <p class="text-sm my-3 w-full 2xl:text-xl">I wanted to take a slightly different approach with this system by exploring a more creative and personal direction in its design, while keeping the features practical and genuinely helpful. As you explore the system, I would appreciate your honest feedback on its functionality, usability, and overall experience. Please feel free to share both what works well and what could be improved. You can also check out the blue envelope below for a little surprise.</p>

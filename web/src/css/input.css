@@ -374,14 +374,30 @@
 }
 
 /* RESPONSIVENESS MAIL GRAPHIC PA LANG & STEP-CARD */
+@media (min-width: 1000px) {
+  .envelope-wrapper {
+    left: 62%;
+    --envelope-scale: 1.5;
+  }
+}
+
 @media (min-width: 1280px) {
   .envelope-wrapper {
+    left: 65%;
+    --envelope-scale: 1.7;
+  }
+}
+
+@media (min-width: 1366px) {
+  .envelope-wrapper {
+    left: 65%;
     --envelope-scale: 2;
   }
 }
 
 @media (min-width: 1536px) {
   .envelope-wrapper {
+    left: 70%;
     --envelope-scale: 2.2;
   }
 }
