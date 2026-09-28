@@ -393,8 +393,23 @@ const TUTORIALS = [
     title: "Configuring Attendance Rules",
     desc: "Define what counts as Present, Late, or Absent.",
     overview: "By default, the Matrix Viewer only tracks simple Present/Absent. Attendance Rules let a group additionally mark participants Late based on join time or how much of the session they attended, and let you decide whether Late should count as Present or Absent in the Total column.",
-    steps: [{ text: "Open a group's Matrix Viewer." }, { text: "Click the <b>Attendance Rules</b> card in the summary row.", image: "../assets/tutorial/AttendanceRules_2.png" }, { text: "Choose <b>Enable Attendance Rules</b> to turn on Present/Late/Absent logic, or leave <b>No Attendance Rules</b> for the simple present/absent default.", image: "../assets/tutorial/AttendanceRules_3.png" }, { text: "Set the <b>Rule Basis</b> (By Join Time, By Duration Coverage, or Both), the Late threshold in minutes, and the Absent threshold percentage.", image: "../assets/tutorial/AttendanceRules_4.png" }, { text: "Choose whether Late should count as Present or Absent in the Total column, then click <b>Save Rules</b>.", image: "../assets/tutorial/AttendanceRules_5.png" }],
-    note: "The Absent threshold always overrides Late/Present, no matter which Rule Basis you choose.",
+    steps: [
+      { text: "Open a group's Matrix Viewer." },
+      {
+        text: "Click the <b>Attendance Rules</b> card in the summary row to open the attendance configuration.",
+        image: "../assets/tutorial/AttendanceRules_2.png",
+      },
+      { text: "Choose <b>Enable Attendance Rules</b> to turn on Present/Late/Absent logic, or leave <b>No Attendance Rules</b> for the simple Present/Absent default.", image: "../assets/tutorial/AttendanceRules_3.png" },
+      {
+        text: "Configure the attendance criteria using the following <b>Rule Basis</b> options:<br><br>" + "<ul class='text-slate-700'>" + "<li ><b>By Join Time</b> — determines whether a participant is Late based on how many minutes after attendance tracking starts they joined. The <b>Late Threshold</b> acts as the grace period.<br><br>" + "<b>Example:</b> If attendance tracking starts at <b>8:00 AM</b> and the Late Threshold is set to <b>10 minutes</b>, a participant who joins at <b>8:05 AM</b> is considered <b>Present</b>. A participant who joins at <b>8:15 AM</b> is considered <b>Late</b> because they joined 15 minutes after attendance tracking started.</li><br>" + "<li><b>By Duration Coverage</b> — determines attendance based on the percentage of the session that a participant attended. The <b>Absent Threshold</b> specifies the minimum percentage of the session that must be attended to avoid being marked Absent.<br><br>" + "<b>Example:</b> If the meeting lasted <b>60 minutes</b> and the Absent Threshold is set to <b>50%</b>, the participant must attend at least <b>30 minutes</b> to avoid being marked <b>Absent</b>. A participant who attended for only <b>20 minutes</b> attended approximately 33% of the session and will therefore be marked <b>Absent</b>.</li><br>" + "<li><b>Both</b> — applies both the join-time and duration-coverage rules.<br><br>" + "<b>Example:</b> If the Late Threshold is <b>10 minutes</b> and the Absent Threshold is <b>50%</b>, a participant who joins <b>15 minutes late</b> but attends enough of the session to meet the required attendance coverage may be marked <b>Late</b>. However, if the participant's attendance falls below the <b>50%</b> coverage requirement, the participant will be marked <b>Absent</b>.</li>" + "</ul>" + "<br><span class='text-slate-600'>The <b>Late Threshold</b> is specified in minutes, while the <b>Absent Threshold</b> is specified as a percentage of the total session duration.</span>",
+        image: "../assets/tutorial/AttendanceRules_4.png",
+        note: "The Absent threshold always overrides Late/Present, no matter which Rule Basis you choose. For example, if the Absent Threshold is set to 50% and a participant joins late but attends less than 50% of the session, the participant will be marked Absent rather than Late. If you do not want the Absent Threshold to override attendance classifications, set it to 0% if allowed by the system.",
+      },
+      {
+        text: "Choose whether Late should count as Present or Absent in the Total column, then click <b>Save Rules</b>.",
+        image: "../assets/tutorial/AttendanceRules_5.png",
+      },
+    ],
   },
   {
     id: "exporting-matrix",
